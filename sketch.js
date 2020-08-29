@@ -166,9 +166,9 @@ function draw() {
         textRefractionAngle = -90 - angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(LEFT, BOTTOM);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(RIGHT, BOTTOM);
@@ -195,14 +195,15 @@ function draw() {
         textRefractionAngle = angleOfRefraction / 2 + 90;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(LEFT, BOTTOM);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(RIGHT, TOP);
         text(`r = ${nf(angleOfRefraction, 2, 1)}°`, textRefractionPos.x, textRefractionPos.y);
       }
+
       break;
 
     case quadrants.topLeft:
@@ -225,9 +226,9 @@ function draw() {
         textRefractionAngle = -90 + angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(RIGHT, BOTTOM);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(LEFT, BOTTOM);
@@ -250,9 +251,9 @@ function draw() {
         textRefractionAngle = 90 - angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(RIGHT, BOTTOM);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(LEFT, TOP);
@@ -280,9 +281,9 @@ function draw() {
         textRefractionAngle = 90 - angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(RIGHT, TOP);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(LEFT, TOP);
@@ -305,9 +306,9 @@ function draw() {
         textRefractionAngle = -90 + angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(LEFT, TOP);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(LEFT, BOTTOM);
@@ -335,9 +336,9 @@ function draw() {
         textRefractionAngle = 90 + angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(LEFT, TOP);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(RIGHT, TOP);
@@ -360,9 +361,9 @@ function draw() {
         textRefractionAngle = -90 - angleOfRefraction / 2;
         textRefractionPos = createVector(cos(textRefractionAngle) * 30 + width / 2, sin(textRefractionAngle) * 30 + height / 2);
 
-        strokeWeight(0.5);
+        strokeWeight(1);
         fill(0);
-        stroke(0);
+        stroke(255);
         textAlign(LEFT, TOP);
         text(`i = ${nf(angleOfIncidence, 2, 1)}°`, textIncidentPos.x, textIncidentPos.y);
         textAlign(LEFT, BOTTOM);
@@ -380,6 +381,7 @@ function draw() {
 
   // Normal
   strokeWeight(2);
+  stroke(0);
   for (let i = 0; i < height; i += 20) {
     line(width / 2, i, width / 2, i + 10);
   }
@@ -390,13 +392,13 @@ function draw() {
       mat1 = new Material(1, color(255));
       break;
     case "Water":
-      mat1 = new Material(1.33, color("#0ef7b5"));
+      mat1 = new Material(1.33, color("#005380"));
       break;
     case "Glass":
-      mat1 = new Material(1.52, color(61, 146, 216));
+      mat1 = new Material(1.52, color("#d1e3ff"));
       break;
     case "Diamond":
-      mat1 = new Material(2.41, color(54, 249, 246));
+      mat1 = new Material(2.41, color("#70cafa"));
       break;
     case "Custom":
       mat1 = new Material(mat1Index.value(), mat1ColorPicker.color());
@@ -409,13 +411,13 @@ function draw() {
       mat2 = new Material(1, color(255));
       break;
     case "Water":
-      mat2 = new Material(1.33, color("#0ef7b5"));
+      mat2 = new Material(1.33, color("#005380"));
       break;
     case "Glass":
-      mat2 = new Material(1.52, color(61, 146, 216));
+      mat2 = new Material(1.52, color("#d1e3ff"));
       break;
     case "Diamond":
-      mat2 = new Material(2.41, color(54, 249, 246));
+      mat2 = new Material(2.41, color("#70cafa"));
       break;
     case "Custom":
       mat2 = new Material(mat2Index.value(), mat2ColorPicker.color());
