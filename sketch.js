@@ -67,8 +67,7 @@ function draw() {
   // Light source
   lightSource.show();
 
-  // Refracted ray
-
+  // Refracted / reflected ray
   push();
   translate(width / 2, height / 2);
 
@@ -76,14 +75,26 @@ function draw() {
   let x = cos(angleToDraw) * r;
   let y = sin(angleToDraw) * r;
 
+  let arrowR = min(width, height) / 4;
+  let arrowX = cos(angleToDraw) * arrowR;
+  let arrowY = sin(angleToDraw) * arrowR;
 
   if (isTotallyInternallyReflecting) {
     stroke(reflectedRayColor);
+    fill(reflectedRayColor);
   } else {
     stroke(refractedRayColor);
+    fill(refractedRayColor);
   }
   strokeWeight(5);
   line(x, y, 0, 0);
+
+  push();
+  translate(arrowX, arrowY);
+  rotate(angleToDraw + 90);
+  noStroke();
+  triangle(0, -10, -10, 10, 10, 10);
+  pop();
 
   // Center circle
   fill(0);
@@ -328,7 +339,6 @@ function draw() {
   }
 
 
-  // TODO: Draw angle markings and show angles
   // TODO: Add UI for user to change materials
   // TODO: Draw arrowheads
   // MAYBE: Support multiple layers (requires major refactoring lol)
