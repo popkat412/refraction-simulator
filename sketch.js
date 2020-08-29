@@ -9,6 +9,9 @@ let angleToDraw;
 let reflectionAngleColor, incidenceAngleColor, refractionAngleColor;
 let lightSourceRayColor, refractedRayColor, reflectedRayColor;
 
+let mat1Select, mat2Select;
+const materials = ["Air", "Glass", "Water", "Diamond"];
+
 quadrants = Object.freeze({
   topRight: 1,
   topLeft: 2,
@@ -34,6 +37,20 @@ function setup() {
   // mat2 = new Material(1, color(250));
 
   lightSource = new LightSource(min(height / 2, width / 2) - 20, -160);
+
+  mat1Select = createSelect();
+  mat2Select = createSelect();
+
+  mat1Select.position(10, 10);
+  mat2Select.position(10, height / 2 + 10);
+
+  materials.forEach((material) => {
+    mat1Select.option(material);
+    mat2Select.option(material);
+  });
+
+  mat1Select.selected("Air");
+  mat2Select.selected("Glass");
 }
 
 function draw() {
@@ -340,13 +357,48 @@ function draw() {
 
 
   // TODO: Add UI for user to change materials
-  // TODO: Draw arrowheads
   // MAYBE: Support multiple layers (requires major refactoring lol)
 
   // Normal
   strokeWeight(2);
   for (let i = 0; i < height; i += 20) {
     line(width / 2, i, width / 2, i + 10);
+  }
+
+  // Update materials based on UI
+  switch (mat1Select.value()) {
+    case "Air":
+      mat1 = new Material(1, color(255));
+      break;
+    case "Water":
+      mat1 = new Material(1.33, color("#0ef7b5"));
+      break;
+    case "Glass":
+      mat1 = new Material(1.52, color(61, 146, 216));
+      break;
+    case "Diamond":
+      mat1 = new Material(2.41, color(54, 249, 246));
+      break;
+    default:
+      console.log("Something wrong with pickers");
+      break;
+  }
+  switch (mat2Select.value()) {
+    case "Air":
+      mat2 = new Material(1, color(255));
+      break;
+    case "Water":
+      mat2 = new Material(1.33, color("#0ef7b5"));
+      break;
+    case "Glass":
+      mat2 = new Material(1.52, color(61, 146, 216));
+      break;
+    case "Diamond":
+      mat2 = new Material(2.41, color(54, 249, 246));
+      break;
+    default:
+      console.log("Something wrong with pickers");
+      break;
   }
 }
 
