@@ -10,7 +10,9 @@ let reflectionAngleColor, incidenceAngleColor, refractionAngleColor;
 let lightSourceRayColor, refractedRayColor, reflectedRayColor;
 
 let mat1Select, mat2Select;
-const materials = ["Air", "Glass", "Water", "Diamond"];
+let mat1ColorPicker, mat2ColorPicker;
+let mat1Index, mat2Index;
+const materials = ["Air", "Glass", "Water", "Diamond", "Custom"];
 
 quadrants = Object.freeze({
   topRight: 1,
@@ -38,6 +40,7 @@ function setup() {
 
   lightSource = new LightSource(min(height / 2, width / 2) - 20, -160);
 
+  // UI
   mat1Select = createSelect();
   mat2Select = createSelect();
 
@@ -51,6 +54,22 @@ function setup() {
 
   mat1Select.selected("Air");
   mat2Select.selected("Glass");
+
+  mat1ColorPicker = createColorPicker(mat1.color);
+  mat2ColorPicker = createColorPicker(mat2.color);
+  mat1ColorPicker.position(10, 30);
+  mat2ColorPicker.position(10, height / 2 + 30);
+  mat1ColorPicker.hide();
+  mat2ColorPicker.hide();
+
+  mat1Index = createInput(`${mat1.n}`);
+  mat2Index = createInput(`${mat2.n}`);
+  mat1Index.size(40);
+  mat2Index.size(40);
+  mat1Index.position(10, 60);
+  mat2Index.position(10, height / 2 + 60);
+  mat1Index.hide();
+  mat2Index.hide();
 }
 
 function draw() {
@@ -379,8 +398,10 @@ function draw() {
     case "Diamond":
       mat1 = new Material(2.41, color(54, 249, 246));
       break;
+    case "Custom":
+      mat1 = new Material(mat1Index.value(), mat1ColorPicker.color());
+      break;
     default:
-      console.log("Something wrong with pickers");
       break;
   }
   switch (mat2Select.value()) {
@@ -396,9 +417,26 @@ function draw() {
     case "Diamond":
       mat2 = new Material(2.41, color(54, 249, 246));
       break;
-    default:
-      console.log("Something wrong with pickers");
+    case "Custom":
+      mat2 = new Material(mat2Index.value(), mat2ColorPicker.color());
       break;
+    default:
+      break;
+  }
+
+  if (mat1Select.value() === "Custom") {
+    mat1ColorPicker.show();
+    mat1Index.show();
+  } else {
+    mat1ColorPicker.hide();
+    mat1Index.hide();
+  }
+  if (mat2Select.value() === "Custom") {
+    mat2ColorPicker.show();
+    mat2Index.show();
+  } else {
+    mat2ColorPicker.hide();
+    mat2Index.hide();
   }
 }
 
